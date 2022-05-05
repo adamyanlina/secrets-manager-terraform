@@ -1,4 +1,4 @@
-resource "aws_secretsmanager_secret" "secrets_manager" {
+resource "aws_secretsmanager_secret" "secrets-manager" {
   for_each    = var.secrets_map
   name        = each.value["secret_name"]
   description = "Managed by Terraform"
