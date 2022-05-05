@@ -17,6 +17,6 @@ resource "aws_secretsmanager_secret_version" "secret" {
    }
 EOF
   depends_on = [
-    aws_secretsmanager_secret.secrets_manager
+    aws_secretsmanager_secret.secrets-manager
   ]
 }
