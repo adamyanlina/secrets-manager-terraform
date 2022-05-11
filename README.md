@@ -1,36 +1,22 @@
-
-## Usage/Examples
-
-```hcl
 module "secrets-manager" {
   source = "git::https://github.com/adamyanlina/secrets-manager-terraform.git//modules/secrets-manager"
 
   secrets = {
-    mongodb-uhkv = {
-      description = "MongoDB URI & Host secrets"
+    (var.secret_id) = {
+      description = var.secret_description
       secret_key_value = {
-        uri = "mongodb://username:pass/example.com"
-        host = "localhost"
+        mongodb_uri = var.mongodb_uri
+        mongodb_host = var.mongodb_host
+        mongodb_username = var.mongodb_username
+        mongodb_password = var.mongodb_password
       }
-      recovery_window_in_days = 7
-    },
-    mongodb-upkv = {
-      description = "MongoDB Username & Password secrets"
-      secret_key_value = {
-        username = "muser"
-        password = "topsecret"
-      }
-      tags = {
-        app = "mongodbuser"
-      }
-      recovery_window_in_days = 7
-    },
+      recovery_window_in_days = var.recovery_window_in_days
+    }
   }
 
   tags = {
-    Owner       = "Lina Adamyan"
+    Owner       = "Lina"
     Environment = "dev"
     Terraform   = true
   }
 }
-```
